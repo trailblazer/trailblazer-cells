@@ -1,13 +1,13 @@
-require 'test_helper'
+require "test_helper"
 
 module Post
   module Cell
-    class New < ::Cell::ViewModel
+    class New < Trailblazer::Cell
 
     end
 
-    class Show < ::Cell::ViewModel
-      class Sidebar < ::Cell::ViewModel
+    class Show < Trailblazer::Cell
+      class Sidebar < Trailblazer::Cell
 
       end
     end
@@ -17,12 +17,12 @@ end
 module Admin
   module Post
     module Cell
-      class New < ::Cell::ViewModel
+      class New < Trailblazer::Cell
 
       end
 
-      class Show < ::Cell::ViewModel
-        class Sidebar < ::Cell::ViewModel
+      class Show < Trailblazer::Cell
+        class Sidebar < Trailblazer::Cell
 
         end
       end
