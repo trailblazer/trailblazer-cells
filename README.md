@@ -14,11 +14,6 @@ module Post
       class SideBar < Trailblazer::Cell   # => app/concepts/post/views
 ```
 
-## View Paths
-
-Some projects do not use the `app/concept` view path.
-
-
 ## Automatic `show`
 
 You don't have to define a `show` method, `Trailblazer::Cell` will have one that looks as follows.
@@ -50,6 +45,15 @@ You can still override using `render view: :name`.
 
 It works identical with namespaces.
 
+## View Paths
+
+Some projects do not use the `app/concept` view path. This can be changed as follows.
+
+```ruby
+Trailblazer::Cell.view_paths = ["concepts"]
+```
+
+Note that this will change for all cells, including bundled in gems. Introduce an `Application::Cell` if you don't like that.
 
 ## Dependencies
 
