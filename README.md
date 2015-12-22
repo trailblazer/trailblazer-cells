@@ -39,7 +39,44 @@ module Post
 
 You can still override using `render view: :name`.
 
-## Application Layout
+## Layout
+
+You can pass a layout cell into every `Trailblazer::Cell` which will render the layout.
+
+```ruby
+Post::Cell::Show.new(post, layout: Gemgem::Cell::Layout).()
+```
+
+The `:layout` option has to refer to a cell class. When invoked, the layout cell will receive the content of the actual cell under `:content`, resulting in a call as follows.
+
+```ruby
+Gemgem::Cell::Layout.new(post,
+  content: Post::Cell::Show.new(post)
+)
+```
+
+The layout cell's `show` view can sit in any directory, for example `gemgem/view/layout.rb`.
+
+```erb
+<html>
+Yay, I'm the layout!
+
+<%= content %>
+</html>
+```
+
+It's up to you what you do with the `:content` option. Here's the Trailblazer way.
+
+```ruby
+class Gemgem::Cell::Layout < Trailblazer::Cell
+  self.view_paths = ["gemgem"]
+  def content
+    @options[:content]
+  end
+end
+```
+
+Cells with layout cells allow replacing a frameworks entire view stack, e.g. `ActionView`.
 
 ## Namespaces
 

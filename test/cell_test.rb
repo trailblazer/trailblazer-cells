@@ -30,6 +30,20 @@ module Admin
   end
 end
 
+# layout cell
+module Post
+  module Cell
+    class Layout < Trailblazer::Cell
+      self.view_paths = ["test/concepts"]
+      include ::Cell::Erb
+
+      def content
+        @options[:content]
+      end
+    end
+  end
+end
+
 class CellTest < Minitest::Test
   describe "#prefixes" do
     it { Post::Cell::New.prefixes.must_equal ["app/concepts/post/view"] }
@@ -43,5 +57,9 @@ class CellTest < Minitest::Test
 
   describe "#render" do
     it { Post::Cell::Show::SideBar.new(nil).().must_equal "$side_bar\n" }
+  end
+
+  describe "layout" do
+    it { Post::Cell::Show::SideBar.new(nil, layout: Post::Cell::Layout).().must_equal "layout{$side_bar\n}\n" }
   end
 end
