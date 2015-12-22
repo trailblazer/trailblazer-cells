@@ -11,14 +11,38 @@ module Post
   module Cell
     class New < Trailblazer::Cell         # => app/concepts/post/views
     class Show < Trailblazer::Cell        # => app/concepts/post/views
-      class Sidebar < Trailblazer::Cell   # => app/concepts/post/views
+      class SideBar < Trailblazer::Cell   # => app/concepts/post/views
 ```
 
 ## View Paths
 
 Some projects do not use the `app/concept` view path.
 
+
+## Automatic `show`
+
+You don't have to define a `show` method, `Trailblazer::Cell` will have one that looks as follows.
+
+```ruby
+class Trailblazer::Cell
+  def show
+    render
+  end
+```
+
 ## View Name
+
+When calling `render`, the view name is inferred from the class name.
+
+```ruby
+module Post
+  module Cell
+    class New < Trailblazer::Cell         # => new.erb
+    class Show < Trailblazer::Cell        # => show.erb
+      class SideBar < Trailblazer::Cell   # => side_bar.erb
+```
+
+You can still override using `render view: :name`.
 
 ## Application Layout
 
