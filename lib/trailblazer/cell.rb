@@ -18,6 +18,27 @@ module Trailblazer
       def views_dir
         "view"
       end
+
+      def view_name
+        @view_name ||= _view_name
+      end
+
+      def _view_name
+        class_name = to_s.split("::").last
+        util.underscore(class_name).downcase
+      end
     end
+
+    def state_for_implicit_render(options)
+      self.class.view_name
+    end
+
+    # Automatic #show so you don't need to define it. Still overridable.
+    module Show
+      def show
+        render
+      end
+    end
+    include Show
   end
 end
