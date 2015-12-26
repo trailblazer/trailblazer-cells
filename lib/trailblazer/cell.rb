@@ -33,6 +33,8 @@ module Trailblazer
       self.class.view_name
     end
 
+    alias_method :concept, :cell # TODO: test me.
+
     # Automatic #show so you don't need to define it. Still overridable.
     module Show
       def show
