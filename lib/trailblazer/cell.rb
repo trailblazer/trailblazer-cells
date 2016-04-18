@@ -43,17 +43,6 @@ module Trailblazer
     end
     include Show
 
-    module Layout
-      def render(options={})
-        options[:layout] = @options[:layout] if @options[:layout]
-        super
-      end
-
-      def with_layout(options, content)
-        return content unless layout = options[:layout]
-        layout.new(model, parent_controller: parent_controller, content: content) # TODO: test parent_controller.
-      end
-    end
-    include Layout
+    include Layout::External # from ViewModel.
   end
 end

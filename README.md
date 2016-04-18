@@ -9,9 +9,9 @@ In Trailblazer, class structures as the following are very common, let's say for
 ```ruby
 module Post
   module Cell
-    class New < Trailblazer::Cell         # => app/concepts/post/views
-    class Show < Trailblazer::Cell        # => app/concepts/post/views
-      class SideBar < Trailblazer::Cell   # => app/concepts/post/views
+    class New < Trailblazer::Cell         # => app/concepts/post/view
+    class Show < Trailblazer::Cell        # => app/concepts/post/view
+      class SideBar < Trailblazer::Cell   # => app/concepts/post/view
 ```
 
 ## Automatic `show`

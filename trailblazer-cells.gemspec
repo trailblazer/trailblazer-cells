@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "cells-erb"
 
-  spec.add_dependency "cells", ">= 4.0.3", "< 5.0.0"
+  spec.add_dependency "cells", ">= 4.1.0", "< 5.0.0"
 end
