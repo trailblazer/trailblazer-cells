@@ -38,7 +38,7 @@ module Trailblazer
     # Automatic #show so you don't need to define it. Still overridable.
     module Show
       def show
-        render
+        render view: :show
       end
     end
     include Show
