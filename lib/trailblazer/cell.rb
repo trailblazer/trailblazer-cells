@@ -11,6 +11,7 @@ module Trailblazer
         name.camelize.constantize
       end
 
+      # Comment::Cell::Show #=> comment/view/
       def controller_path
         @controller_path ||= File.join(util.underscore(name.sub(/(::Cell.+)/, '')), views_dir)
       end
@@ -29,19 +30,12 @@ module Trailblazer
       end
     end
 
+    # Comment::Cell::Show #=> show
     def state_for_implicit_render(options)
       self.class.view_name
     end
 
     alias_method :concept, :cell # TODO: test me.
-
-    # Automatic #show so you don't need to define it. Still overridable.
-    module Show
-      def show
-        render
-      end
-    end
-    include Show
 
     include Layout::External # from ViewModel.
   end

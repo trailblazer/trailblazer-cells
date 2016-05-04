@@ -1,6 +1,6 @@
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'trailblazer/cells/version'
+require "trailblazer/cells/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "trailblazer-cells"
@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "cells-erb"
 
-  spec.add_dependency "cells", ">= 4.1.0", "< 5.0.0"
+  spec.add_dependency "cells", ">= 4.1.0.rc1", "< 5.0.0"
 end
