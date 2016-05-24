@@ -1,5 +1,6 @@
 require "test_helper"
 require "cells-erb"
+require "trailblazer/cells/flat_template_dir"
 
 module Post
   module Cell
@@ -10,6 +11,11 @@ module Post
       class SideBar < Trailblazer::Cell
         self.view_paths = ["test/concepts"]
         include ::Cell::Erb
+      end
+      class FlatSideBar < Trailblazer::Cell
+        self.view_paths = ["test/concepts"]
+        include ::Cell::Erb
+        include Trailblazer::Cell::FlatTemplateDir
       end
     end
   end
@@ -49,6 +55,7 @@ class CellTest < Minitest::Test
     it { Post::Cell::New.prefixes.must_equal ["app/concepts/post/view"] }
     it { Post::Cell::Show.prefixes.must_equal ["app/concepts/post/view"] }
     it { Post::Cell::Show::SideBar.prefixes.must_equal ["test/concepts/post/view"] }
+    it { Post::Cell::Show::FlatSideBar.prefixes.must_equal ["test/concepts/post/view"] }
 
     it { Admin::Post::Cell::New.prefixes.must_equal ["app/concepts/admin/post/view"] }
     it { Admin::Post::Cell::Show.prefixes.must_equal ["app/concepts/admin/post/view"] }
@@ -61,5 +68,9 @@ class CellTest < Minitest::Test
 
   describe "layout" do
     it { Post::Cell::Show::SideBar.new(nil, layout: Post::Cell::Layout).().must_equal "layout{$side_bar\n}\n" }
+  end
+
+  describe "flat layout" do
+    it { Post::Cell::Show::FlatSideBar.new(nil, layout: Post::Cell::Layout).().must_equal "layout{$flat_side_bar\n}\n" }
   end
 end
