@@ -1,6 +1,5 @@
 require "test_helper"
 require "cells-erb"
-require "trailblazer/cells/flat_template_dir"
 
 module Post
   module Cell
@@ -12,10 +11,11 @@ module Post
         self.view_paths = ["test/concepts"]
         include ::Cell::Erb
       end
+
       class FlatSideBar < Trailblazer::Cell
         self.view_paths = ["test/concepts"]
         include ::Cell::Erb
-        include Trailblazer::Cell::FlatTemplateDir
+        extend ViewName::Flat
       end
     end
   end
