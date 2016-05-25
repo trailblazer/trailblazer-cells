@@ -62,6 +62,11 @@ class CellTest < Minitest::Test
     it { Admin::Post::Cell::Show::SideBar.prefixes.must_equal ["app/concepts/admin/post/view"] }
   end
 
+  describe "::view_name" do
+    it { Admin::Post::Cell::Show.view_name.must_equal "show" }
+    it { Admin::Post::Cell::Show::SideBar.view_name.must_equal "show/side_bar" }
+  end
+
   describe "#render" do
     it { Post::Cell::Show::SideBar.new(nil).().must_equal "$side_bar\n" }
   end

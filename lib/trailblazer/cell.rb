@@ -24,8 +24,9 @@ module Trailblazer
         @view_name ||= _view_name
       end
 
+      # The view name is everything behind the last `Cell::`.
       def _view_name
-        class_name = to_s.match(/(?:.*)::Cell::(.*)/){|match| match[1]}
+        class_name = to_s.split("Cell::").last
         util.underscore(class_name).downcase
       end
     end
