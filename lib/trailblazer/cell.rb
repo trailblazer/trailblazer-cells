@@ -28,7 +28,7 @@ module Trailblazer
     # TODO: this should be in Helper or something. this should be the only entry point from controller/view.
     class << self
       def class_from_cell_name(name)
-        name.camelize.constantize
+        util.constant_for(util.camelize(name))
       end
 
       # Comment::Cell::Show #=> comment/view/
