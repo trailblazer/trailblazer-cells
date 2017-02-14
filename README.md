@@ -4,7 +4,7 @@ _Trailblazer's file layout for Cells._
 
 ## View Prefixes
 
-In Trailblazer, class structures as the following are very common, let's say for a `post` concept, here are the class headers, and where the view directory gets resolved to.
+In Trailblazer, class structures such as the following are very common, let's say for a `post` concept, here are the class headers, and where the view directory gets resolved to.
 
 ```ruby
 module Post
