@@ -52,14 +52,14 @@ end
 
 class CellTest < Minitest::Test
   describe "#prefixes" do
-    it { Post::Cell::New.prefixes.must_equal ["app/concepts/post/view"] }
-    it { Post::Cell::Show.prefixes.must_equal ["app/concepts/post/view"] }
-    it { Post::Cell::Show::SideBar.prefixes.must_equal ["test/concepts/post/view"] }
-    it { Post::Cell::Show::FlatSideBar.prefixes.must_equal ["test/concepts/post/view"] }
+    it { Post::Cell::New.prefixes.must_equal ["app/concepts/post/view", "app/concepts/post/views"] }
+    it { Post::Cell::Show.prefixes.must_equal ["app/concepts/post/view", "app/concepts/post/views"] }
+    it { Post::Cell::Show::SideBar.prefixes.must_equal ["test/concepts/post/view", "test/concepts/post/views"] }
+    it { Post::Cell::Show::FlatSideBar.prefixes.must_equal ["test/concepts/post/view", "test/concepts/post/views"] }
 
-    it { Admin::Post::Cell::New.prefixes.must_equal ["app/concepts/admin/post/view"] }
-    it { Admin::Post::Cell::Show.prefixes.must_equal ["app/concepts/admin/post/view"] }
-    it { Admin::Post::Cell::Show::SideBar.prefixes.must_equal ["app/concepts/admin/post/view"] }
+    it { Admin::Post::Cell::New.prefixes.must_equal ["app/concepts/admin/post/view", "app/concepts/admin/post/views"] }
+    it { Admin::Post::Cell::Show.prefixes.must_equal ["app/concepts/admin/post/view", "app/concepts/admin/post/views"] }
+    it { Admin::Post::Cell::Show::SideBar.prefixes.must_equal ["app/concepts/admin/post/view", "app/concepts/admin/post/views"] }
   end
 
   describe "::view_name" do

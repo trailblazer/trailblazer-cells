@@ -27,17 +27,24 @@ module Trailblazer
 
     # TODO: this should be in Helper or something. this should be the only entry point from controller/view.
     class << self
+
+      def _local_prefixes
+        view_paths.collect do |path|
+          view_dirs.collect { |dir| "#{path}/#{controller_path}/#{dir}" }
+        end.flatten
+      end
+
+      def view_dirs
+        %w(view views)
+      end
+
       def class_from_cell_name(name)
         name.camelize.constantize
       end
 
       # Comment::Cell::Show #=> comment/view/
       def controller_path
-        @controller_path ||= File.join(util.underscore(name.sub(/(::Cell.+)/, '')), views_dir)
-      end
-
-      def views_dir
-        "view"
+        @controller_path ||= File.join(util.underscore(name.sub(/(::Cell.+)/, '')))
       end
 
       def view_name
