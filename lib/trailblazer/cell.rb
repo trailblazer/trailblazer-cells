@@ -29,9 +29,7 @@ module Trailblazer
     class << self
 
       def _local_prefixes
-        view_paths.collect do |path|
-          view_dirs.collect { |dir| "#{path}/#{controller_path}/#{dir}" }
-        end.flatten
+        view_paths.product(view_dirs).collect { |path, dir| "#{path}/#{controller_path}/#{dir}" }
       end
 
       def view_dirs
