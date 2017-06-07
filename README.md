@@ -84,10 +84,10 @@ It works identical with namespaces.
 
 ## View Paths
 
-Some projects do not use the `app/concept` view path. This can be changed as follows.
+Some projects do not use the `app/concepts` view path. This can be changed as follows.
 
 ```ruby
-Trailblazer::Cell.view_paths = ["concepts"]
+Trailblazer::Cell.view_paths = ["app/concept"]
 ```
 
 Note that this will change for all cells, including bundled in gems. Introduce an `Application::Cell` if you don't like that.
