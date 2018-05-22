@@ -1,6 +1,13 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in trailblazer-cells.gemspec
 gemspec
-
-gem "cells", path: "../cells"
+case ENV['GEMS_SOURCE']
+when 'local'
+  gem "cells", path: "../cells"
+when 'github'
+  gem "reform", github: "trailblazer/cells"
+when 'custom'
+  eval_gemfile('GemfileCustom')
+else # use rubygems releases
+  gem "cells"
+end
