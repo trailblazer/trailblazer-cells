@@ -44,6 +44,11 @@ module Trailblazer
         @view_name ||= _view_name
       end
 
+      # Computes the complete, namespaced cache key for +state+.
+      def state_cache_key(state, key_parts={})
+        expand_cache_key([util.underscore(name), state, key_parts])
+      end
+
       include ViewName::Path
     end
 
