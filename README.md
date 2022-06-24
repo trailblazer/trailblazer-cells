@@ -2,6 +2,87 @@
 
 _Trailblazer's file layout for Cells._
 
+## Overview
+
+Trailblazer cells are view components based on the [Cells](https://github.com/trailblazer/trailblazer-cells) gem, but following the Trailblazer naming conventions.
+
+### File Structure
+
+```
+├── app
+│    ├── concepts
+│    │   ├── blog_post
+│    │   │    ├── cell
+│    │   │    │   ├── edit.rb
+│    │   │    │   ├── item.rb
+│    │   │    │   ├── new.rb
+│    │   │    │   └── show.rb
+│    │   │    └── view
+│    │   │        ├── edit.erb
+│    │   │        ├── item.erb
+│    │   │        ├── new.erb
+│    │   │        └── show.erb
+│    │   │        └── author_list.erb
+```
+
+### Cell Class
+
+```ruby
+# app/concepts/blog_post/cell/edit.rb
+module BlogPost
+  module Cell
+    class Edit < Trailblazer::Cell
+
+      # You can have helper methods.
+      def post_url
+        new_blog_post_path(model.id)
+      end
+
+      def summary
+        "#{model.text[0..99]}..."
+      end
+    end # New
+  end
+end
+```
+
+### Views
+
+```erb
+# app/concepts/blog_post/view/edit.erb
+<h1>
+  You're editing <%= model.titel %>
+</h1>
+
+<div class="summary">
+  <%= summary %>
+</div>
+
+<%= render :edit_form %>
+```
+
+```erb
+# app/concepts/blog_post/view/edit_form.erb
+<%= simple_form_for model, url: post_url do %>
+  ...
+<% end %>
+```
+
+### Rendering
+
+```ruby
+# app/controllers/blog_post_controller.rb
+class BlogPostController < ApplicationController
+  def edit
+    @blog_post = BlogPost.find(params[:id]) # do whatever you need here.
+
+    render cell(BlogPost::Cell::Edit, @blog_post)
+  end
+end
+
+```
+
+
 ## View Prefixes
 
 In Trailblazer, class structures such as the following are very common, let's say for a `post` concept, here are the class headers, and where the view directory gets resolved to.
